@@ -99,7 +99,7 @@ def status(_, msg):
 	orig_text=msg.text.split("/status ", maxsplit = 1)[1]
 	text = orig_text
 	chid=msg.chat.id
-	app.send_chat_action(chid, text)
+	Client.send_chat_action(chid, text)
 	msg.delete()
 @Client.on_message(filters.command("last", prefixes = "/")&filters.me)
 def search(_, msg):
@@ -108,7 +108,7 @@ def search(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for message in Client.search_global(filter="empty" , limit=text):
-		app.send_message(chid, message.text)
+		Client.send_message(chid, message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("search", prefixes = "/")&filters.me)
 def seek(_, msg):
@@ -117,12 +117,12 @@ def seek(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for message in Client.search_global(text , limit=25):
-		app.send_message(chid, message.text)
+		Client.send_message(chid, message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("countmsg", prefixes = "/")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Количество сообщений в чате:</b> "+str(app.get_history_count(chid))) 
+	msg.edit("<b>Количество сообщений в чате:</b> "+str(Client.get_history_count(chid))) 
 @Client.on_message(filters.command("help", prefixes = "/")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
