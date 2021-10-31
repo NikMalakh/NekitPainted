@@ -5,8 +5,8 @@ import random
 chid=0
 ```
 {"settings": {"debug": "True"}, "creationlist": ["idk", "NoName"], "notes": {"test": "lo"}}
-@Client.on_message(filters.command("type", prefixes = "/")&filters.me)
 ```
+@Client.on_message(filters.command("type", prefixes = "/")&filters.me)
 def type(_, msg):
 	orig_text=msg.text.split("/type ", maxsplit = 1)[1]
 	text = orig_text
