@@ -41,7 +41,7 @@ def raid(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,50):
-		Client.send_message(chid,text)
+		_.send_message(chid,text)
 		sleep(0.03)
 @Client.on_message(filters.command("spamphoto", prefixes = "/")&filters.me)
 def photo(_, msg):
@@ -50,7 +50,7 @@ def photo(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,25):
-		Client.send_photo(chid,text)
+		_.send_photo(chid,text)
 		sleep(0.05)
 @Client.on_message(filters.command("spamvideo", prefixes = "/")&filters.me)
 def vid(_, msg):
@@ -59,7 +59,7 @@ def vid(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,25):
-		Client.send_video(chid,text)
+		_.send_video(chid,text)
 		sleep(0.075)
 @Client.on_message(filters.command("spamgif", prefixes = "/")&filters.me)
 def gif(_, msg):
@@ -68,7 +68,7 @@ def gif(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,25):
-		Client.send_animation(chid,text)
+		_.send_animation(chid,text)
 		sleep(0.05)
 @Client.on_message(filters.command("spamvoice", prefixes = "/")&filters.me)
 def aud(_, msg):
@@ -77,7 +77,7 @@ def aud(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,25):
-		Client.send_audio(chid,text)
+		_.send_audio(chid,text)
 		sleep(0.05) 
 @Client.on_message(filters.command("spamdoc", prefixes = "/")&filters.me)
 def doc(_, msg):
@@ -86,7 +86,7 @@ def doc(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,25):
-		Client.send_document(chid,text)
+		_.send_document(chid,text)
 		sleep(0.05) 
 @Client.on_message(filters.command("spamsticker", prefixes = "/")&filters.me)
 def stick(_, msg):
@@ -95,14 +95,14 @@ def stick(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for i in range(1,25):
-		Client.send_sticker(chid,text)
+		_.send_sticker(chid,text)
 		sleep(0.05) 
 @Client.on_message(filters.command("status", prefixes = "/")&filters.me)
 def status(_, msg):
 	orig_text=msg.text.split("/status ", maxsplit = 1)[1]
 	text = orig_text
 	chid=msg.chat.id
-	Client.send_chat_action(chid, text)
+	_.send_chat_action(chid, text)
 	msg.delete()
 @Client.on_message(filters.command("last", prefixes = "/")&filters.me)
 def search(_, msg):
@@ -110,8 +110,8 @@ def search(_, msg):
 	text = int(orig_text)
 	chid=msg.chat.id
 	msg.delete()
-	for message in Client.search_global(filter="empty" , limit=text):
-		Client.send_message(chid, message.text)
+	for message in _.search_global(filter="empty" , limit=text):
+		_.send_message(chid, message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("search", prefixes = "/")&filters.me)
 def seek(_, msg):
@@ -119,13 +119,13 @@ def seek(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for message in Client.search_global(text , limit=25):
-		Client.send_message(chid, message.text)
+	for message in _.search_global(text , limit=25):
+		_.send_message(chid, message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("countmsg", prefixes = "/")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Количество сообщений в чате:</b> "+str(Client.get_history_count(chid))) 
+	msg.edit("<b>Количество сообщений в чате:</b> "+str(_.get_history_count(chid))) 
 @Client.on_message(filters.command("help", prefixes = "/")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
