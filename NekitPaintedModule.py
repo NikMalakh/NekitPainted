@@ -115,7 +115,7 @@ def search(_, msg):
 		sleep(0.1)
 @Client.on_message(filters.command("nmsearch", prefixes = "%")&filters.me)
 def seek(_, msg):
-	count = int(orig_text=msg.text.split("%nmsearch ", maxsplit = 2)[1]) 
+	count = int(msg.text.split("%nmsearch ", maxsplit = 2)[1]) 
 	orig_text=msg.text.split(" ", maxsplit = 2)[2]
 	text = orig_text
 	chid=msg.chat.id
