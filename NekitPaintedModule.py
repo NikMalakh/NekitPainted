@@ -106,7 +106,7 @@ def status(_, msg):
 	msg.delete()
 @Client.on_message(filters.command("nmlast", prefixes = "%")&filters.me)
 def search(_, msg):
-	orig_text=msg.text.split("%nmlast ", maxsplit = 1)[1]
+	orig_text=msg.text.split("%last ", maxsplit = 1)[1]
 	text = int(orig_text)
 	chid=msg.chat.id
 	msg.delete()
@@ -115,11 +115,12 @@ def search(_, msg):
 		sleep(0.1)
 @Client.on_message(filters.command("nmsearch", prefixes = "%")&filters.me)
 def seek(_, msg):
-	orig_text=msg.text.split("%nmsearch ", maxsplit = 1)[1]
+	count = int(orig_text=msg.text.split("%nmsearch ", maxsplit = 1)[1]) 
+	orig_text=msg.text.split("%nmsearch ", maxsplit = 2)[2]
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for message in _.search_global(text , limit=25):
+	for message in _.search_global(text , limit=count):
 		_.send_message(chid, message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("nmcountmsg", prefixes = "%")&filters.me)
@@ -129,7 +130,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Список команд юзербота</b>\n\n<b><i>Спам: </i></b><code>%nmspam</code> <i>текст</i>, <code>%nmspamphoto</code> <i>фото</i>, <code>%nmspamvideo</code> <i>видео</i>, <code>%nmspamsticker</code> <i>стикер</i>, <code>%nmspamdoc</code> <i>файл</i>, <code>%nmspamgif</code> <i>анимация</i>, <code>%nmspamvoice</code> <i>голосовое сообщение</i>\n<b><i>Анимации: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>текст</i>\n<b><i>Фейковый статус: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Поиск сообщений: </i></b><code>%nmlast</code> <i>кол-во сообщений</i>, <code>%nmsearch</code> <i>запрос</i>\n<b><i>Информация о чате: </i></b><code>%nmcountmsg</code>\n<b><i>Технические команды: </b></i><code>%nmtest</code>") 
+	msg.edit("<b>Список команд юзербота</b>\n\n<b><i>Спам: </i></b><code>%nmspam</code> <i>текст</i>, <code>%nmspamphoto</code> <i>фото</i>, <code>%nmspamvideo</code> <i>видео</i>, <code>%nmspamsticker</code> <i>стикер</i>, <code>%nmspamdoc</code> <i>файл</i>, <code>%nmspamgif</code> <i>анимация</i>, <code>%nmspamvoice</code> <i>голосовое сообщение</i>\n<b><i>Анимации: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>текст</i>\n<b><i>Фейковый статус: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Поиск сообщений: </i></b><code>%nmlast</code> <i>кол-во сообщений</i>, <code>%nmsearch</code> <i>запрос</i>\n<b><i>Информация о чате: </i></b><code>%nmcountmsg</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -144,6 +145,3 @@ def tcker(_, msg):
 		lsm+=1
 		fsm+=1
 		sleep(0.2)
-@Client.on_message(filters.command("nmtest", prefixes = "%")&filters.me)
-def test(_, msg):
-	msg.edit("<i>Модуль работает отлично</i>")
