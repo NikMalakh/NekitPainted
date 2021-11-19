@@ -130,7 +130,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Список команд юзербота</b>\n\n<b><i>Спам: </i></b><code>%nmspam</code> <i>текст</i>, <code>%nmspamphoto</code> <i>фото</i>, <code>%nmspamvideo</code> <i>видео</i>, <code>%nmspamsticker</code> <i>стикер</i>, <code>%nmspamdoc</code> <i>файл</i>, <code>%nmspamgif</code> <i>анимация</i>, <code>%nmspamvoice</code> <i>голосовое сообщение</i>\n<b><i>Анимации: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>текст</i>\n<b><i>Фейковый статус: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Поиск сообщений: </i></b><code>%nmlast</code> <i>кол-во сообщений</i>, <code>%nmsearch</code> <i>запрос</i>\n<b><i>Информация о чате: </i></b><code>%nmcountmsg</code>") 
+	msg.edit("<b>Список команд юзербота</b>\n\n<b><i>Спам: </i></b><code>%nmspam</code> <i>текст</i>, <code>%nmspamphoto</code> <i>фото</i>, <code>%nmspamvideo</code> <i>видео</i>, <code>%nmspamsticker</code> <i>стикер</i>, <code>%nmspamdoc</code> <i>файл</i>, <code>%nmspamgif</code> <i>анимация</i>, <code>%nmspamvoice</code> <i>голосовое сообщение</i>\n<b><i>Анимации: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>текст</i>\n<b><i>Фейковый статус: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Поиск сообщений: </i></b><code>%nmlast</code> <i>кол-во сообщений</i>, <code>%nmsearch</code> <i>[количество результатов] [запрос]</i>\n<b><i>Информация о чате: </i></b><code>%nmcountmsg</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -145,3 +145,6 @@ def tcker(_, msg):
 		lsm+=1
 		fsm+=1
 		sleep(0.2)
+@Client.on_message(filters.command("nmtest", prefixes = "%")&filters.me)
+def tester(_, msg):
+	msg.edit("<i>Module works good</i>")
