@@ -115,7 +115,7 @@ def last(_, msg):
 			_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
 			sleep(0.1)
 		except:
-			_.send_message(chid, "<i>An error occured during sending the message</i>")
+			_.send_message(chid, "<i>An error occured while sending the message</i>")
 @Client.on_message(filters.command("nmsearch", prefixes = "%")&filters.me)
 def search(_, msg):
 	count = int(msg.text.split(" ")[1]) 
@@ -128,7 +128,7 @@ def search(_, msg):
 			_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
 			sleep(0.1)
 		except:
-			_.send_message(chid, "<i>An error occured during sending the message</i>")
+			_.send_message(chid, "<i>An error occured while sending the message</i>")
 @Client.on_message(filters.command("nmctype", prefixes = "%")&filters.me)
 def ctype(_, msg):
 	symbol=msg.text.split(" ")[1]
