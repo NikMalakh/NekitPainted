@@ -106,7 +106,7 @@ def status(_, msg):
 	msg.delete()
 @Client.on_message(filters.command("nmlast", prefixes = "%")&filters.me)
 def search(_, msg):
-	orig_text=msg.text.replace("%last ", "")
+	orig_text=msg.text.replace("%nmlast ", "")
 	text = int(orig_text)
 	chid=msg.chat.id
 	msg.delete()
