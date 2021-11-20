@@ -24,16 +24,16 @@ def type(_, msg):
 			sleep(e.x) 
 @Client.on_message(filters.command("nmantifem", prefixes = "%")&filters.me)
 def ugnet(_, msg):
-	msg.edit("🤬 Начинаем угнетать фемок")
+	msg.edit("🤬 Starting fem oppressing...")
 	percent = 0
 	while(percent<100):
 		try:
-			msg.edit("🤬 Процент угнетения: "+str(percent)+"%")
+			msg.edit("🤬 Opressed: "+str(percent)+"%")
 			percent += random.randint(1,5)
 			sleep(0.05)
 		except FloodWait as e:
 			sleep(e.x)
-	msg.edit("✔️ Все фемки в чате успешно угнетены")
+	msg.edit("✔️ All feminists in the chat successfully oppressed")
 @Client.on_message(filters.command("nmspam", prefixes = "%")&filters.me)
 def raid(_, msg):
 	orig_text=msg.text.split("%nmspam ", maxsplit = 1)[1]
@@ -126,11 +126,11 @@ def seek(_, msg):
 @Client.on_message(filters.command("nmcountmsg", prefixes = "%")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Количество сообщений в чате:</b> "+str(_.get_history_count(chid))) 
+	msg.edit("<b>Messages in chat:</b> "+str(_.get_history_count(chid))) 
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Список команд юзербота</b>\n\n<b><i>Спам: </i></b><code>%nmspam</code> <i>текст</i>, <code>%nmspamphoto</code> <i>фото</i>, <code>%nmspamvideo</code> <i>видео</i>, <code>%nmspamsticker</code> <i>стикер</i>, <code>%nmspamdoc</code> <i>файл</i>, <code>%nmspamgif</code> <i>анимация</i>, <code>%nmspamvoice</code> <i>голосовое сообщение</i>\n<b><i>Анимации: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>текст</i>\n<b><i>Фейковый статус: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Поиск сообщений: </i></b><code>%nmlast</code> <i>кол-во сообщений</i>, <code>%nmsearch</code> <i>[количество результатов] [запрос]</i>\n<b><i>Информация о чате: </i></b><code>%nmcountmsg</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b>Technical commands: </b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -148,3 +148,6 @@ def tcker(_, msg):
 @Client.on_message(filters.command("nmtest", prefixes = "%")&filters.me)
 def tester(_, msg):
 	msg.edit("<i>Module works good</i>")
+@Client.on_message(filters.command("nmversion", prefixes = "%")$filters.me)
+def tester(_, msg):
+	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.0\nDo not distribute</i>")
