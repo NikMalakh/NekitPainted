@@ -123,6 +123,23 @@ def seek(_, msg):
 	for message in _.search_global(text , limit=count):
 		_.send_message(chid, message.text)
 		sleep(0.1)
+@Client.on_message(filters.command("nmctype", prefixes = "%")&filters.me)
+def ctype(_, msg):
+	symbol=msg.text.split(" ")[1]
+	orig_text=msg.text.split(" ", maxsplit = 2)[2]
+	text = orig_text
+	tbp = ""
+	typing_symbol = symbol
+	while(tbp != orig_text):
+		try:
+			msg.edit(tbp+typing_symbol)
+			sleep(0.05)
+			tbp = tbp+text[0]
+			text=text[1:]
+			msg.edit(tbp)
+			sleep(0.05)
+		except FloodWait as e:
+			sleep(e.x) 
 @Client.on_message(filters.command("nmcountmsg", prefixes = "%")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
@@ -130,7 +147,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
