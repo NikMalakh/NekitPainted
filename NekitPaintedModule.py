@@ -24,16 +24,16 @@ def type(_, msg):
 			sleep(e.x) 
 @Client.on_message(filters.command("nmantifem", prefixes = "%")&filters.me)
 def ugnet(_, msg):
-	msg.edit("🤬 Starting fem oppressing...")
+	msg.edit("<i>🤬 Starting fem oppressing...</i>")
 	percent = 0
 	while(percent<100):
 		try:
-			msg.edit("🤬 Opressed: "+str(percent)+"%")
+			msg.edit("<i><b>🤬 Opressed: </b>"+str(percent)+"%</i>")
 			percent += random.randint(1,5)
 			sleep(0.05)
 		except FloodWait as e:
 			sleep(e.x)
-	msg.edit("✔️ All feminists in the chat successfully oppressed")
+	msg.edit("<b><i>✔️ All feminists in the chat successfully oppressed</i></b>")
 @Client.on_message(filters.command("nmspam", prefixes = "%")&filters.me)
 def raid(_, msg):
 	orig_text=msg.text.split("%nmspam ", maxsplit = 1)[1]
@@ -126,7 +126,7 @@ def seek(_, msg):
 @Client.on_message(filters.command("nmcountmsg", prefixes = "%")&filters.me)
 def count(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Messages in chat:</b> "+str(_.get_history_count(chid))) 
+	msg.edit("<i><b>Messages in chat:</b> "+str(_.get_history_count(chid))+"</i>") 
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
@@ -147,7 +147,7 @@ def tcker(_, msg):
 		sleep(0.2)
 @Client.on_message(filters.command("nmtest", prefixes = "%")&filters.me)
 def tester(_, msg):
-	msg.edit("<i>Module works good</i>")
+	msg.edit("<i><b>Module works good</b></i>")
 @Client.on_message(filters.command("nmversion", prefixes = "%")&filters.me)
 def version(_, msg):
 	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.1\nDo not distribute</i>")
