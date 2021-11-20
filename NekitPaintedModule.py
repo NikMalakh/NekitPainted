@@ -111,7 +111,7 @@ def search(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for message in _.search_global(filter="empty" , limit=text):
-		_.send_message(chid, "<i>"+message.from_user.first_name+" in "+message.chat.title+": </i>"+message.text)
+		_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("nmsearch", prefixes = "%")&filters.me)
 def seek(_, msg):
@@ -121,7 +121,7 @@ def seek(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for message in _.search_global(text , limit=count):
-		_.send_message(chid, message.text)
+		_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
 		sleep(0.1)
 @Client.on_message(filters.command("nmctype", prefixes = "%")&filters.me)
 def ctype(_, msg):
