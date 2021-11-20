@@ -130,7 +130,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b>Technical commands: </b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>текст</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -150,4 +150,4 @@ def tester(_, msg):
 	msg.edit("<i>Module works good</i>")
 @Client.on_message(filters.command("nmversion", prefixes = "%")&filters.me)
 def version(_, msg):
-	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.0\nDo not distribute</i>")
+	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.1\nDo not distribute</i>")
