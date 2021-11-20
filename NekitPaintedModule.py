@@ -111,12 +111,11 @@ def last(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for message in _.search_global(filter="empty" , limit=text):
-		if message.chat.type=="group":
-			try:
-				_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
-				sleep(0.1)
-			except:
-				_.sed_message(chid, "<i>An error occured during sending the message</i>")
+		try:
+			_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
+			sleep(0.1)
+		except:
+			_.send_message(chid, "<i>An error occured during sending the message</i>")
 @Client.on_message(filters.command("nmsearch", prefixes = "%")&filters.me)
 def search(_, msg):
 	count = int(msg.text.split(" ")[1]) 
@@ -125,12 +124,11 @@ def search(_, msg):
 	chid=msg.chat.id
 	msg.delete()
 	for message in _.search_global(text , limit=count):
-		if message.chat.type=="group":
-			try:
-				_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
-				sleep(0.1)
-			except:
-				_.send_message(chid, "<i>An error occured during sending the message</i>")
+		try:
+			_.send_message(chid, "<i>"+message.from_user.first_name+"</i><b> in </b><i>"+message.chat.title+": </i>"+message.text)
+			sleep(0.1)
+		except:
+			_.send_message(chid, "<i>An error occured during sending the message</i>")
 @Client.on_message(filters.command("nmctype", prefixes = "%")&filters.me)
 def ctype(_, msg):
 	symbol=msg.text.split(" ")[1]
