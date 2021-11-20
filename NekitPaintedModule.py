@@ -148,6 +148,6 @@ def tcker(_, msg):
 @Client.on_message(filters.command("nmtest", prefixes = "%")&filters.me)
 def tester(_, msg):
 	msg.edit("<i>Module works good</i>")
-@Client.on_message(filters.command("nmversion", prefixes = "%")$filters.me)
+@Client.on_message(filters.command("nmversion", prefixes = "%")&filters.me)
 def tester(_, msg):
 	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.0\nDo not distribute</i>")
