@@ -174,3 +174,14 @@ def tester(_, msg):
 @Client.on_message(filters.command("nmversion", prefixes = "%")&filters.me)
 def version(_, msg):
 	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.3\nDo not distribute</i>")
+@Client.on_message(filters.command("nmrand", prefixes = "%")&filters.me)
+def rand(_, msg):
+	rand1 = int(msg.text.split(" ")[1])
+	rand2 = (msg.text.split(" ")[2])
+	rand = random.randint(rand1, rand2)
+	msg.edit("<i>Число: <b>{rand}</b></i>")
+@Client.on_message(filters.command("nmcalc", prefixes = "%")&filters.me)
+def calc(_, msg):
+	exor=msg.text.split("%nmcalc ", maxsplit = 1)[1]
+	val = eval(expr)
+	msg.edit("<i>Число: <b>{expr}</b></i>")
