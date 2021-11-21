@@ -41,7 +41,7 @@ def raid(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_message(chid,text)
 		sleep(0.03)
 @Client.on_message(filters.command("nmspamphoto", prefixes = "%")&filters.me)
@@ -51,7 +51,7 @@ def photo(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_photo(chid,text)
 		sleep(0.05)
 @Client.on_message(filters.command("nmspamvideo", prefixes = "%")&filters.me)
@@ -61,7 +61,7 @@ def vid(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_video(chid,text)
 		sleep(0.075)
 @Client.on_message(filters.command("nmspamgif", prefixes = "%")&filters.me)
@@ -71,7 +71,7 @@ def gif(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_animation(chid,text)
 		sleep(0.05)
 @Client.on_message(filters.command("nmspamvoice", prefixes = "%")&filters.me)
@@ -81,7 +81,7 @@ def aud(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_audio(chid,text)
 		sleep(0.05) 
 @Client.on_message(filters.command("nmspamdoc", prefixes = "%")&filters.me)
@@ -91,7 +91,7 @@ def doc(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_document(chid,text)
 		sleep(0.05) 
 @Client.on_message(filters.command("nmspamsticker", prefixes = "%")&filters.me)
@@ -101,7 +101,7 @@ def stick(_, msg):
 	text = orig_text
 	chid=msg.chat.id
 	msg.delete()
-	for i in range(1,count):
+	for i in range(0,count):
 		_.send_sticker(chid,text)
 		sleep(0.05) 
 @Client.on_message(filters.command("nmstatus", prefixes = "%")&filters.me)
