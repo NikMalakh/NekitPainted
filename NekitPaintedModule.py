@@ -177,11 +177,11 @@ def version(_, msg):
 @Client.on_message(filters.command("nmrand", prefixes = "%")&filters.me)
 def rand(_, msg):
 	rand1 = int(msg.text.split(" ")[1])
-	rand2 = (msg.text.split(" ")[2])
+	rand2 = int(msg.text.split(" ")[2])
 	rand = random.randint(rand1, rand2)
 	msg.edit("<i>Число: <b>{0}</b></i>".format(rand))
 @Client.on_message(filters.command("nmcalc", prefixes = "%")&filters.me)
 def calc(_, msg):
 	expr=msg.text.split("%nmcalc ", maxsplit = 1)[1]
 	val = eval(expr)
-	msg.edit("<i>{expr}=<b>{0}</b></i>".format(val))
+	msg.edit("<i>{0}=<b>{1}</b></i>".format(expr, val))
