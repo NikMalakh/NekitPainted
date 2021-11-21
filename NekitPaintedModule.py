@@ -153,7 +153,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>text</i>, <code>%nmspamphoto</code> <i>photo URL</i>, <code>%nmspamvideo</code> <i>video URL</i>, <code>%nmspamsticker</code> <i>sticker URL</i>, <code>%nmspamdoc</code> <i>document URL</i>, <code>%nmspamgif</code> <i>GIF URL</i>, <code>%nmspamvoice</code> <i>audio URL</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression</i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -173,15 +173,15 @@ def tester(_, msg):
 	msg.edit("<i><b>Module works good</b></i>")
 @Client.on_message(filters.command("nmversion", prefixes = "%")&filters.me)
 def version(_, msg):
-	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.3\nDo not distribute</i>")
+	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.0.4\nDo not distribute</i>")
 @Client.on_message(filters.command("nmrand", prefixes = "%")&filters.me)
 def rand(_, msg):
 	rand1 = int(msg.text.split(" ")[1])
 	rand2 = int(msg.text.split(" ")[2])
 	rand = random.randint(rand1, rand2)
-	msg.edit("<i>Число: <b>{0}</b></i>".format(rand))
+	msg.edit("<i>I choose <b>{0}</b></i>".format(rand))
 @Client.on_message(filters.command("nmcalc", prefixes = "%")&filters.me)
 def calc(_, msg):
 	expr=msg.text.split("%nmcalc ", maxsplit = 1)[1]
 	val = eval(expr)
-	msg.edit("<i>{0}=<b>{1}</b></i>".format(expr, val))
+	msg.edit("<i><b>Expression: </b>{0}\n<b>Answer: </b>{1}</i>".format(expr, val))
