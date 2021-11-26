@@ -198,7 +198,7 @@ def calc(_, msg):
 def calc(_, msg):
 	a=msg.text.split("%nmart ", maxsplit = 1)[1]
 	if a=="f":
-		text = random.choice(r"""
+		text = random.choice([r"""
 ███████╗
 ██╔════╝
 █████╗░░
@@ -210,5 +210,5 @@ def calc(_, msg):
 ┃╰━━╮
 ┃╭━━╯
 ┃┃
-╰╯""") 
+╰╯"""]) 
 	msg.edit(text) 
