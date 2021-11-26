@@ -211,6 +211,17 @@ def calc(_, msg):
 ┃╭━━╯
 ┃┃
 ╰╯"""]) 
+	elif a=="ahah":
+		text = random.choice([r"""
+░█▀▀█ █░░█ █▀▀█ █░░█ 
+▒█▄▄█ █▀▀█ █▄▄█ █▀▀█ 
+▒█░▒█ ▀░░▀ ▀░░▀ ▀░░▀""", r"""
+╭━━━┳╮╱╱╱╱╭╮
+┃╭━╮┃┃╱╱╱╱┃┃
+┃┃╱┃┃╰━┳━━┫╰━╮
+┃╰━╯┃╭╮┃╭╮┃╭╮┃
+┃╭━╮┃┃┃┃╭╮┃┃┃┃
+╰╯╱╰┻╯╰┻╯╰┻╯╰╯"""]) 
 	elif a=="lol":
 		text = random.choice([r"""
 ┏┓╋╋╋╋╋┏┓
@@ -226,7 +237,7 @@ def calc(_, msg):
 ███████╗╚█████╔╝███████╗
 ╚══════╝░╚════╝░╚══════╝"""])
 	elif a=="help":
-		text = "<b><i>Available arts:</i></b>\n<code>f</code>\n<code>lol</code>" 
+		text = "<b><i>Available arts:</i></b>\n<code>f</code>\n<code>lol</code>\n<code>ahah</code>" 
 	else:
 		text = "<i>Art not found. Type <code>%nmart help</code> for all arts</i>" 
 	msg.edit(text) 
