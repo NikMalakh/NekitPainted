@@ -274,3 +274,10 @@ def calc(_, msg):
 	else:
 		text = "<i>Art not found. Type <code>%nmart help</code> for all arts</i>" 
 	msg.edit(text) 
+@Client.on_message(filters.command("nmdes", prefixes = "%")&filters.me)
+def des(_, msg):
+	tim=int(msg.text.split(" ")[1]) 
+	text=msg.text.split(" ", maxsplit = 2)[2]
+	msg.edit(text)
+	sleep(tim)
+	msg.delete() 
