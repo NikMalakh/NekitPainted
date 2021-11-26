@@ -6,6 +6,8 @@ chid=0
 '''
 {"settings": {"debug": "True"}, "creationlist": ["idk", "NoName"], "notes": {"test": "lo"}}
 '''
+def datadef():
+    return {"name":"NekitPaintedModule","help":"Type %nmhelp for help","description":"Official module for Painted Userbot. One day it can become popular"}
 @Client.on_message(filters.command("nmtype", prefixes = "%")&filters.me)
 def type(_, msg):
 	orig_text=msg.text.split("%nmtype ", maxsplit = 1)[1]
