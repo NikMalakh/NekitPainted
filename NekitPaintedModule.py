@@ -307,7 +307,7 @@ def textar(_, msg):
                      (¸.·´ (¸.·'* ☆
 
 Whoosh and <code>{0}""".format(txt)
-elif a=="fairy":
+	elif a=="fairy":
 		text = r""".∧＿∧
 ( ･ω･｡)つ━☆・*。
 ⊂  ノ    ・゜ .
