@@ -285,7 +285,11 @@ def des(_, msg):
 def textar(_, msg):
 	a=msg.text.split(" ")[1]
 	if a!="help":
-		txt=msg.text.split(" ", maxsplit = 2)[2] 
+		try:
+			txt=msg.text.split(" ", maxsplit = 2)[2] 
+		except:
+			msg.edit("<b><i>You need to provide some text</i></b>") 
+			return
 	if a=="tv":
 		text = r"""<b>░▀▄░░▄▀
 ▄▄▄██▄▄▄▄▄░▀█▀▐░▌
@@ -294,8 +298,26 @@ def textar(_, msg):
 █▄▄▄▄▄▄███══════
 
 {0}</b>""".format(txt) 
+	elif a=="whoosh":
+		text = r""".∧＿∧
+( ･ω･｡)つ━☆・*。
+⊂  ノ    ・゜ .
+しーＪ   °。  *´¨)
+             .· ´¸.·*´¨) ¸.·*¨)
+                     (¸.·´ (¸.·'* ☆
+
+Whoosh and <code>{0}""".format(txt)
+elif a=="fairy":
+		text = r""".∧＿∧
+( ･ω･｡)つ━☆・*。
+⊂  ノ    ・゜ .
+しーＪ   °。  *´¨)
+             .· ´¸.·*´¨) ¸.·*¨)
+                     (¸.·´ (¸.·'* ☆
+
+<code>{0}""".format(txt)
 	elif a=="help":
-		text = "<b><i>Available arts with text:</i></b>\n<code>tv</code>\n<code>lol</code>\n<code>ahah</code>\n<code>salam</code>\n<code>yes</code>\n<code>no</code>" 
+		text = "<b><i>Available arts with text:</i></b>\n<code>tv</code>\n<code>whoosh</code>\n<code>fairy</code>" 
 	else:
 		text = "<i>Art not found. Type <code>%nmart help</code> for all arts</i>" 
 	msg.edit(text) 
