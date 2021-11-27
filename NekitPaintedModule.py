@@ -195,7 +195,7 @@ def calc(_, msg):
 	val = eval(expr)
 	msg.edit("<i><b>Expression: </b>{0}\n<b>Answer: </b>{1}</i>".format(expr, val))
 @Client.on_message(filters.command("nmart", prefixes = "%")&filters.me)
-def calc(_, msg):
+def art(_, msg):
 	a=msg.text.split("%nmart ", maxsplit = 1)[1]
 	if a=="f":
 		text = random.choice([r"""
