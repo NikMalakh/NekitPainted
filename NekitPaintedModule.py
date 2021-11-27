@@ -281,3 +281,20 @@ def des(_, msg):
 	msg.edit(text)
 	sleep(tim)
 	msg.delete() 
+@Client.on_message(filters.command("nmcart", prefixes = "%")&filters.me)
+def textar(_, msg):
+	a=float(msg.text.split(" ")[1]) 
+	text=msg.text.split(" ", maxsplit = 2)[2] 
+	if a=="tv":
+		text = r"""<b>░▀▄░░▄▀
+▄▄▄██▄▄▄▄▄░▀█▀▐░▌
+█▒░▒░▒░█▀█░░█░▐░▌
+█░▒░▒░▒█▀█░░█░░█
+█▄▄▄▄▄▄███══════
+
+{0}</b> .format(text
+	elif a=="help":
+		text = "<b><i>Available arts with text:</i></b>\n<code>tv</code>\n<code>lol</code>\n<code>ahah</code>\n<code>salam</code>\n<code>yes</code>\n<code>no</code>" 
+	else:
+		text = "<i>Art not found. Type <code>%nmart help</code> for all arts</i>" 
+	msg.edit(text) 
