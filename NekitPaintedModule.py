@@ -285,7 +285,7 @@ def des(_, msg):
 def textar(_, msg):
 	a=msg.text.split(" ")[1]
 	if a!="help":
-		text=msg.text.split(" ", maxsplit = 2)[2] 
+		txt=msg.text.split(" ", maxsplit = 2)[2] 
 	if a=="tv":
 		text = r"""<b>░▀▄░░▄▀
 ▄▄▄██▄▄▄▄▄░▀█▀▐░▌
@@ -293,7 +293,7 @@ def textar(_, msg):
 █░▒░▒░▒█▀█░░█░░█
 █▄▄▄▄▄▄███══════
 
-{0}</b>""".format(text) 
+{0}</b>""".format(txt) 
 	elif a=="help":
 		text = "<b><i>Available arts with text:</i></b>\n<code>tv</code>\n<code>lol</code>\n<code>ahah</code>\n<code>salam</code>\n<code>yes</code>\n<code>no</code>" 
 	else:
