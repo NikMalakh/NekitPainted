@@ -306,7 +306,7 @@ def textar(_, msg):
              .· ´¸.·*´¨) ¸.·*¨)
                      (¸.·´ (¸.·'* ☆
 
-Whoosh and <code>{0}""".format(txt)
+Whoosh and <code>{0}</code>""".format(txt)
 	elif a=="fairy":
 		text = r""".∧＿∧
 ( ･ω･｡)つ━☆・*。
@@ -315,7 +315,7 @@ Whoosh and <code>{0}""".format(txt)
              .· ´¸.·*´¨) ¸.·*¨)
                      (¸.·´ (¸.·'* ☆
 
-<code>{0}""".format(txt)
+<code>{0}</code>""".format(txt)
 	elif a=="help":
 		text = "<b><i>Available arts with text:</i></b>\n<code>tv</code>\n<code>whoosh</code>\n<code>fairy</code>" 
 	else:
