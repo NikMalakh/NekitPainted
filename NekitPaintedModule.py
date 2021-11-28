@@ -339,7 +339,7 @@ def ph(_, msg):
 		link = 'https://te.legra.ph'+path[0]['src']
 	except KeyError:
 		link = path["error"]
-	await msg.edit("<b>"+link+"</b>")
+	msg.edit("<b>"+link+"</b>")
 def check_media(reply_message):
 	if reply_message and reply_message.media:
 		if reply_message.photo:
