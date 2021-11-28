@@ -330,18 +330,16 @@ def ph(_, msg):
 		if isinstance(data, bool):
 			msg.edit("<b>Reply to photo or video/gif</b>")
 			return
-		else:
-			msg.edit("<b>Reply to photo or video/gif</b>")
-			return	
-		file = _.download_media(data)
-		path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
-		try:
-			link = 'https://te.legra.ph'+path[0]['src']
-		except KeyError:
-			link = path["error"]
-		await msg.edit("<b>"+link+"</b>")
-				
-			
+	else:
+		msg.edit("<b>Reply to photo or video/gif</b>")
+		return	
+	file = _.download_media(data)
+	path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
+	try:
+		link = 'https://te.legra.ph'+path[0]['src']
+	except KeyError:
+		link = path["error"]
+	await msg.edit("<b>"+link+"</b>")
 def check_media(reply_message):
 	if reply_message and reply_message.media:
 		if reply_message.photo:
