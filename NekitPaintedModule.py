@@ -326,14 +326,16 @@ Whoosh and <code>{0}</code>""".format(txt)
 def ph(_, msg):
 	if msg.reply_to_message!=None:
 		reply_message = msg.reply_to_message
-		data = check_media(reply_message)
+		if not check_media(reply_message):
+			msg.edit("<b><i>Reply to photo or video</i></b>")
+			return	 
 		if isinstance(data, bool):
 			msg.edit("<b><i>Reply to photo or video</i></b>")
 			return
 	else:
 		msg.edit("<b><i>Reply to photo or video</i></b>")
 		return	
-	file = _.download_media(data)
+	file = _.download_media(reply_message)
 	path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
 	try:
 		link = 'https://te.legra.ph'+path[0]['src']
