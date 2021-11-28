@@ -326,20 +326,20 @@ Whoosh and <code>{0}</code>""".format(txt)
 def ph(_, msg):
 	if message.reply_to_message!=None:
 		reply_message = message.reply_to_message
-			data = check_media(reply_message)
-			if isinstance(data, bool):
-				msg.edit("<b>Reply to photo or video/gif</b>")
-				return
-			else:
-				msg.edit("<b>Reply to photo or video/gif</b>")
-				return	
-			file = _.download_media(data)
-			path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
-			try:
-				link = 'https://te.legra.ph'+path[0]['src']
-			except KeyError:
-				link = path["error"]
-			await msg.edit("<b>"+link+"</b>")
+		data = check_media(reply_message)
+		if isinstance(data, bool):
+			msg.edit("<b>Reply to photo or video/gif</b>")
+			return
+		else:
+			msg.edit("<b>Reply to photo or video/gif</b>")
+			return	
+		file = _.download_media(data)
+		path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
+		try:
+			link = 'https://te.legra.ph'+path[0]['src']
+		except KeyError:
+			link = path["error"]
+		await msg.edit("<b>"+link+"</b>")
 				
 			
 def check_media(reply_message):
@@ -348,8 +348,8 @@ def check_media(reply_message):
 			data = reply_message.photo
 		elif reply_message.video:
 			data = reply_message.video 
-	else:
-		return False
+		else:
+			return False
 	if not data or data is None:
 		return False
 	else:
