@@ -341,8 +341,8 @@ def ph(_, msg):
 		link = path["error"]
 	msg.edit("<b>"+link+"</b>")
 def check_media(reply_message):
-	if reply_message and reply_message.media:
 	data = None
+	if reply_message and reply_message.media:
 		if reply_message.photo!=None:
 			data = reply_message.photo
 		elif reply_message.video!=None:
