@@ -324,8 +324,8 @@ Whoosh and <code>{0}</code>""".format(txt)
 	msg.edit(text) 
 @Client.on_message(filters.command("nmph", prefixes = "%")&filters.me)
 def ph(_, msg):
-	if message.reply_to_message!=None:
-		reply_message = message.reply_to_message
+	if msg.reply_to_message!=None:
+		reply_message = msg.reply_to_message
 		data = check_media(reply_message)
 		if isinstance(data, bool):
 			msg.edit("<b>Reply to photo or video/gif</b>")
