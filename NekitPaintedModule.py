@@ -334,11 +334,11 @@ def ph(_, msg):
 		return	
 	file = _.download_media(reply_message)
 	path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
-	try:
+	if True:
 		link = 'https://te.legra.ph'+path[0]['src']
-	except KeyError:
+	else:
 		link = path["error"]
-	msg.edit("<b>"+link+"</b>")
+	msg.edit("<b><i>"+link+"</i></b>")
 def check_media(reply_message):
 	data = None
 	if reply_message and reply_message.media:
