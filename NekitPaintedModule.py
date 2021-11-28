@@ -331,7 +331,7 @@ def ph(_, msg):
 			msg.edit("<b><i>Reply to photo or video</i></b>")
 			return
 	else:
-		msg.edit("<b></i>Reply to photo or video</i></b>")
+		msg.edit("<b><i>Reply to photo or video</i></b>")
 		return	
 	file = _.download_media(data)
 	path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
@@ -342,13 +342,14 @@ def ph(_, msg):
 	msg.edit("<b>"+link+"</b>")
 def check_media(reply_message):
 	if reply_message and reply_message.media:
+	data = None
 		if reply_message.photo!=None:
 			data = reply_message.photo
 		elif reply_message.video!=None:
 			data = reply_message.video 
 		else:
 			return False
-	if data is None:
+	if data is None or data is False:
 		return False
 	else:
 		return data 
