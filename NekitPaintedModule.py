@@ -335,7 +335,7 @@ def ph(_, msg):
 	file = _.download_media(reply_message)
 	path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
 	try:
-		link = 'https://te.legra.ph'+path[0]['src']
+		link = 'https://te.legra.ph'+path.url
 	except KeyError:
 		link = path["error"]
 	msg.edit("<b><i>"+link+"</i></b>")
