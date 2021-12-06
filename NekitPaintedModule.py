@@ -320,35 +320,18 @@ Whoosh and <code>{0}</code>""".format(txt)
 	elif a=="help":
 		text = "<b><i>Available arts with text:</i></b>\n<code>tv</code>\n<code>whoosh</code>\n<code>fairy</code>" 
 	else:
-		text = "<i>Art not found. Type <code>%nmart help</code> for all arts</i>" 
+		text = "<i>Art not found. Type <code>%nmcart help</code> for all arts</i>" 
 	msg.edit(text) 
-@Client.on_message(filters.command("nmph", prefixes = "%")&filters.me)
-def ph(_, msg):
-	if msg.reply_to_message!=None:
-		reply_message = msg.reply_to_message
-		if not check_media(reply_message):
-			msg.edit("<b><i>Reply to photo or video</i></b>")
-			return
-	else:
-		msg.edit("<b><i>Reply to photo or video</i></b>")
-		return	
-	file = _.download_media(reply_message)
-	path = requests.post('https://te.legra.ph/upload', files={'file': ('file', file, None)}).json()
-	try:
-		link = 'https://te.legra.ph'+path[0]['src']
-	except KeyError:
-		link = path["error"]
-	msg.edit("<b><i>"+link+"</i></b>")
-def check_media(reply_message):
-	data = None
-	if reply_message and reply_message.media:
-		if reply_message.photo!=None:
-			data = reply_message.photo
-		elif reply_message.video!=None:
-			data = reply_message.video 
-		else:
-			return False
-	if data is None or data is False:
-		return False
-	else:
-		return data 
+@Client.on_message(filters.command("nmcopy", prefixes = "%")&filters.me)
+def copy(_, msg):
+	if not hasattr(msg.reply_to_message, 'text'):
+		msg.edit("<i><b>A reply is required</b></i>")
+		return
+	message = msg.reply_to_message 
+	user = message.from_user
+	id = user.id
+	fstname = user.first_name
+	lstname = user.last_name
+	bio = _.get_chat(id).bio
+	msg.delete()
+	_.update_profile(first_name=fstname, last_name=lstname, bio=bio)
