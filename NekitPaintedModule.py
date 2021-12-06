@@ -332,6 +332,6 @@ def copy(_, msg):
 	id = user.id
 	fstname = user.first_name
 	lstname = "" if user.last_name is None else user.last_name
-	bio = _.get_chat(id).bio[:69]
+	bio = "" if _.get_chat(id).bio is None else _.get_chat(id).bio[:69]
 	msg.delete()
 	_.update_profile(first_name=fstname, last_name=lstname, bio=bio)
