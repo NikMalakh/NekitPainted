@@ -343,4 +343,4 @@ def copy(_, msg):
 	chid = msg.chat.id
 	photo = _.download_media(msg)
 	with open('/Users/python273/Desktop/123345.jpeg', 'rb') as f:
-   	_.send_message(chid, requests.post('http://telegra.ph/upload', files={'file': ('file', f, 'image/jpeg')}  ).json())
+   		_.send_message(chid, requests.post('http://telegra.ph/upload', files={'file': ('file', f, 'image/jpeg')}  ).json())
