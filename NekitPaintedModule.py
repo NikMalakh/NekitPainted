@@ -379,4 +379,4 @@ def des(_, msg):
 			return
 		x1=(-b+math.sqrt(d))/(2*a)
 		x2=(-b-math.sqrt(d))/(2*a) 
-		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nD=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√D)/(2a)=({4}±√{3})/(2*{0})\nx=[{6}; {7}]</i>".format(a, b, c, d, -b, x1, x2))
+		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nD=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√D)/(2a)=({4}±√{3})/(2*{0})\nx=[{5}; {6}]</i>".format(a, b, c, d, -b, x1, x2))
