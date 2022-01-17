@@ -3,6 +3,7 @@ from pyrogram.errors import FloodWait
 from time import sleep
 import random  
 import requests
+import math
 chid=0
 '''
 {"settings": {"debug": "True"}, "creationlist": ["idk", "NoName"], "notes": {"test": "lo"}}
@@ -361,5 +362,21 @@ def des(_, msg):
 		if k==0:
 			msg.edit("<i>Equation has no roots as <code>k=0</code></i>")
 			return
-		result=k/b
+		result=b/k
 		msg.edit("<i><b>{0}x={1}</b>\nx=b/k={1}/{0}=<b>{2}</b></i>".format(k, b, result))
+	elif typ=="q":
+		try:
+			numbers=oth.split(" ") 
+			a=float(numbers[0])
+			b=float(numbers[1])
+			c=float(numbers[2])
+		except:
+			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax²+bx+c=0</code></i>")
+			return
+		d=b**2-4*a*c
+		if d<0:
+			msg.edit("<i>Equation has no real roots as <code>d<0</code></i>")
+			return
+		x1=(-b+math.sqrt(d))/(2*a)
+		x2=(-b-math.sqrt(d))/(2*a) 
+		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nD=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√D)/(2a)=({4}±√{3})/(2*{0})\nx=[{6}; {7}]</i>".format(a, b, c, d, -b, x1, x2))
