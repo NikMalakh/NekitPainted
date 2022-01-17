@@ -356,7 +356,7 @@ def des(_, msg):
 			k=float(numbers[0])
 			b=float(numbers[1])
 		except:
-			msg.edit("<i>Please provide 2 numbers: <code>k b</code>, where <code>kx=b</code></i>)
+			msg.edit("<i>Please provide 2 numbers: <code>k b</code>, where <code>kx=b</code></i>")
 			return
 		if k==0:
 			msg.edit("<i>Equation has no roots as <code>k=0</code></i>")
