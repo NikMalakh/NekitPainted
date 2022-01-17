@@ -344,3 +344,22 @@ def ph(_, msg):
 	photo = _.download_media(msg)
 	with open(photo, 'rb') as f:
    		_.send_message(chid, requests.post('http://telegra.ph/upload', files={'file': ('file', f, 'image/jpeg')}  ).json())
+
+@Client.on_message(filters.command("nmeq", prefixes = "%")&filters.me)
+def des(_, msg):
+	args=msg.text.split(" ")
+	typ=args[1]
+	oth=msg.text.split(" ", maxsplit=2)[2]
+	if typ=="l":
+		try:
+			numbers=oth.split(" ") 
+			k=float(numbers[0])
+			b=float(numbers[1])
+		except:
+			msg.edit("<i>Please provide 2 numbers: <code>k b</code>, where <code>kx=b</code></i>)
+			return
+		if k==0:
+			msg.edit("<i>Equation has no roots as <code>k=0</code></i>")
+			return
+		result=k/b
+		msg.edit("<i><b>{0}x={1}</b>\nx=b/k={1}/{0}=<b>{2}</b></i>".format(k, b, result))
