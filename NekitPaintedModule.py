@@ -375,8 +375,39 @@ def des(_, msg):
 			return
 		d=b**2-4*a*c
 		if d<0:
-			msg.edit("<i>Equation has no real roots as <code>d<0</code></i>")
+			msg.edit("<i>Equation has no real roots as <code>Δ={0}<0</code></i>".format(d))
 			return
 		x1=(-b+math.sqrt(d))/(2*a)
 		x2=(-b-math.sqrt(d))/(2*a) 
-		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nD=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√D)/(2a)=({4}±√{3})/(2*{0})\nx=[{5}; {6}]</i>".format(a, b, c, d, -b, x1, x2))
+		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nΔ=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√Δ)/(2a)=({4}±√({3}))/(2*{0})\nx=[{5}; {6}]</i>".format(a, b, c, d, -b, x1, x2))
+	elif typ=="b":
+		try:
+			numbers=oth.split(" ") 
+			a=float(numbers[0])
+			b=float(numbers[1])
+			c=float(numbers[2])
+		except:
+			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax⁴+bx²+c=0</code></i>")
+			return
+		d=b**2-4*a*c
+		if d<0:
+			msg.edit("<i>Equation has no real roots as <code>Δ={0}<0</code></i>".format(d))
+			return
+		t1=(-b+math.sqrt(d))/(2*a)
+		t2=(-b-math.sqrt(d))/(2*a) 
+		if t1<0 and t2<0:
+			msg.edit("<i>Equation has no real roots as both roots of equation <b>{0}t²+{1}t+{2}</b>, where <code>t=x²</code>, are negative</i>".format(a, b, c))
+			return 
+		if t1>=0:
+			x1=math.sqrt(t1)
+			x2=-math.sqrt(t1)
+		else:
+			x1="" 
+			x2="" 
+		if t2>=0:
+			x3=math.sqrt(t2)
+			x4=-math.sqrt(t2) 
+		else:
+			x3="" 
+			x4="" 
+		msg.edit("<i><b>{0}x⁴+{1}x²+{2}=0</b>\nAssume <code>t=x²</code>, so <b>{0}t²+{1}t+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nΔ=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nt=(-b±√Δ)/(2a)=({4}±√({3}))/(2*{0})\nt=[{5}; {6}]\n<b>Step 3. </b>Solve equation x²=t for each <code>t</code>\nx=[{7}; {8}; {9}; {10}]</i>".format(a, b, c, d, -b, t1, t2, x1, x2, x3, x4))
