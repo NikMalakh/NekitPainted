@@ -16,6 +16,11 @@ def sqrt(x):
 		return math.sqrt(x)
 	else:
 		return cmath.sqrt(x) 
+def flt(x):
+	if float(x)%1==0:
+		return int(x) 
+	else:
+		return float(x) 
 @Client.on_message(filters.command("nmtype", prefixes = "%")&filters.me)
 def type(_, msg):
 	orig_text=msg.text.split("%nmtype ", maxsplit = 1)[1]
@@ -32,18 +37,20 @@ def type(_, msg):
 			sleep(0.05)
 		except FloodWait as e:
 			sleep(e.x) 
-@Client.on_message(filters.command("nmantifem", prefixes = "%")&filters.me)
+@Client.on_message(filters.command("nmprocess", prefixes = "%")&filters.me)
 def ugnet(_, msg):
-	msg.edit("<i>🤬 Starting fem oppressing...</i>")
+	orig_text=msg.text.split("%nmprocess ", maxsplit = 1)[1]
+	text = orig_text
+	msg.edit("<i>Starting {0}...</i>".format(text))
 	percent = 0
 	while(percent<100):
 		try:
-			msg.edit("<i><b>🤬 Opressed: </b>"+str(percent)+"%</i>")
+			msg.edit("<i><b>{0}: </b>".format(text)+str(percent)+"%</i>")
 			percent += random.randint(1,5)
 			sleep(0.05)
 		except FloodWait as e:
 			sleep(e.x)
-	msg.edit("<b><i>✔️ All feminists in the chat successfully oppressed</i></b>")
+	msg.edit("<b><i>✔️ {0} finished successfully</i></b>".format(text))
 @Client.on_message(filters.command("nmspam", prefixes = "%")&filters.me)
 def raid(_, msg):
 	orig_text=msg.text.split(" ", maxsplit=2)[2]
@@ -170,7 +177,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i></i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i></i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -190,7 +197,7 @@ def tester(_, msg):
 	msg.edit("<i><b>Module works good</b></i>")
 @Client.on_message(filters.command("nmversion", prefixes = "%")&filters.me)
 def version(_, msg):
-	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.1.0\nDo not distribute</i>")
+	msg.edit("<i><b>Nekit Painted Module</b> for <b>Painted-Userbot</b> v1.2.0\nDo not distribute</i>")
 @Client.on_message(filters.command("nmrand", prefixes = "%")&filters.me)
 def rand(_, msg):
 	rand1 = int(msg.text.split(" ")[1])
@@ -355,13 +362,16 @@ def ph(_, msg):
 @Client.on_message(filters.command("nmeq", prefixes = "%")&filters.me)
 def des(_, msg):
 	args=msg.text.split(" ")
-	typ=args[1]
-	oth=msg.text.split(" ", maxsplit=2)[2]
+	try:
+		typ=args[1]
+		oth=msg.text.split(" ", maxsplit=2)[2]
+	except:
+		pass
 	if typ=="l":
 		try:
 			numbers=oth.split(" ") 
-			k=float(numbers[0])
-			b=float(numbers[1])
+			k=flt(numbers[0])
+			b=flt(numbers[1])
 		except:
 			msg.edit("<i>Please provide 2 numbers: <code>k b</code>, where <code>kx=b</code></i>")
 			return
@@ -373,9 +383,9 @@ def des(_, msg):
 	elif typ=="q":
 		try:
 			numbers=oth.split(" ") 
-			a=float(numbers[0])
-			b=float(numbers[1])
-			c=float(numbers[2])
+			a=flt(numbers[0])
+			b=flt(numbers[1])
+			c=flt(numbers[2])
 		except:
 			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax²+bx+c=0</code></i>")
 			return
@@ -395,16 +405,12 @@ def des(_, msg):
 		d=b**2-4*a*c
 		t1=(-b+sqrt(d))/(2*a)
 		t2=(-b-sqrt(d))/(2*a)
-		if t1>=0:
 			x1=sqrt(t1)
 			x2=-sqrt(t1)
-		else:
-			x1="" 
-			x2="" 
-		if t2>=0:
 			x3=sqrt(t2)
 			x4=-sqrt(t2) 
-		else:
-			x3="" 
-			x4="" 
 		msg.edit("<i><b>{0}x⁴+{1}x²+{2}=0</b>\nAssume <code>t=x²</code>, so <b>{0}t²+{1}t+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nΔ=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nt=(-b±√Δ)/(2a)=({4}±√({3}))/(2*{0})\nt=[{5}; {6}]\n<b>Step 3. </b>Solve equation x²=t for each <code>t</code>\nx=[{7}; {8}; {9}; {10}]</i>".format(a, b, c, d, -b, t1, t2, x1, x2, x3, x4))
+	elif typ=="help":
+		msg.edit("<i><b>Available types of equations</b>\n<code>•l</code>\nNumbers: <code>a b</code>, where ax=b\n<code>•q</code>\nNumbers: <code>a b c</code>, where ax²+bx+c=0\n<code>•l</code>\nNumbers: <code>a b c</code>, where ax⁴+bx²+c=0</i>")
+	else:
+		msg.edit("<i>I can't solve this type of equation. Type <code>%nmeq help</code> for all available types</i>")
