@@ -378,7 +378,7 @@ def des(_, msg):
 		if k==0:
 			msg.edit("<i>Equation has no roots as <code>k=0</code></i>")
 			return
-		result=b/k
+		result=flt(b/k) 
 		msg.edit("<i><b>{0}x={1}</b>\nx=b/k={1}/{0}=<b>{2}</b></i>".format(k, b, result))
 	elif typ=="q":
 		try:
@@ -389,28 +389,28 @@ def des(_, msg):
 		except:
 			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax²+bx+c=0</code></i>")
 			return
-		d=b**2-4*a*c
-		x1=(-b+sqrt(d))/(2*a)
-		x2=(-b-sqrt(d))/(2*a) 
+		d=flt(b**2-4*a*c) 
+		x1=flt((-b+sqrt(d))/(2*a)) 
+		x2=flt((-b-sqrt(d))/(2*a)) 
 		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nΔ=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√Δ)/(2a)=({4}±√({3}))/(2*{0})\nx=[{5}; {6}]</i>".format(a, b, c, d, -b, x1, x2))
 	elif typ=="b":
 		try:
 			numbers=oth.split(" ") 
-			a=float(numbers[0])
-			b=float(numbers[1])
-			c=float(numbers[2])
+			a=flt(numbers[0])
+			b=flt(numbers[1])
+			c=flt(numbers[2])
 		except:
 			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax⁴+bx²+c=0</code></i>")
 			return
-		d=b**2-4*a*c
-		t1=(-b+sqrt(d))/(2*a)
-		t2=(-b-sqrt(d))/(2*a)
-		x1=sqrt(t1)
-		x2=-sqrt(t1)
-		x3=sqrt(t2)
-		x4=-sqrt(t2) 
+		d=flt(b**2-4*a*c) 
+		t1=flt((-b+sqrt(d))/(2*a)) 
+		t2=flt((-b-sqrt(d))/(2*a)) 
+		x1=flt(sqrt(t1)) 
+		x2=flt(-sqrt(t1)) 
+		x3=flt(sqrt(t2)) 
+		x4=flt(-sqrt(t2)) 
 		msg.edit("<i><b>{0}x⁴+{1}x²+{2}=0</b>\nAssume <code>t=x²</code>, so <b>{0}t²+{1}t+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nΔ=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nt=(-b±√Δ)/(2a)=({4}±√({3}))/(2*{0})\nt=[{5}; {6}]\n<b>Step 3. </b>Solve equation x²=t for each <code>t</code>\nx=[{7}; {8}; {9}; {10}]</i>".format(a, b, c, d, -b, t1, t2, x1, x2, x3, x4))
 	elif typ=="help":
-		msg.edit("<i><b>Available types of equations</b>\n<code>•l</code>\nNumbers: <code>a b</code>, where ax=b\n<code>•q</code>\nNumbers: <code>a b c</code>, where ax²+bx+c=0\n<code>•l</code>\nNumbers: <code>a b c</code>, where ax⁴+bx²+c=0</i>")
+		msg.edit("<i><b>Available types of equations</b>\n<code>•l</code>\nNumbers: <code>a b</code>, where ax=b\n<code>•q</code>\nNumbers: <code>a b c</code>, where ax²+bx+c=0\n<code>•b</code>\nNumbers: <code>a b c</code>, where ax⁴+bx²+c=0</i>")
 	else:
 		msg.edit("<i>I can't solve this type of equation. Type <code>%nmeq help</code> for all available types</i>")
