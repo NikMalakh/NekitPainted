@@ -12,7 +12,10 @@ chid=0
 def datadef():
     return {"name":"NekitPaintedModule","help":"Type %nmhelp for help","description":"Official module for Painted Userbot. One day it can become popular"}
 def sqrt(x):
-	return math.pow(x,0.5)
+	if x>=0:
+		return math.sqrt(x)
+	else:
+		return cmath.sqrt(x) 
 @Client.on_message(filters.command("nmtype", prefixes = "%")&filters.me)
 def type(_, msg):
 	orig_text=msg.text.split("%nmtype ", maxsplit = 1)[1]
@@ -167,7 +170,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b></i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmantifem</code>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i></i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -377,11 +380,8 @@ def des(_, msg):
 			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax²+bx+c=0</code></i>")
 			return
 		d=b**2-4*a*c
-		if d<0:
-			msg.edit("<i>Equation has no real roots as <code>Δ={0}<0</code></i>".format(d))
-			return
-		x1=(-b+math.sqrt(d))/(2*a)
-		x2=(-b-math.sqrt(d))/(2*a) 
+		x1=(-b+sqrt(d))/(2*a)
+		x2=(-b-sqrt(d))/(2*a) 
 		msg.edit("<i><b>{0}x²+{1}x+{2}=0</b>\n<b>Step 1. </b>Calculate discriminant\nΔ=b²-4ac=({1})²-4*{0}*{2}={3}\n<b>Step 2. </b>Find roots using quadratics root formula\nx=(-b±√Δ)/(2a)=({4}±√({3}))/(2*{0})\nx=[{5}; {6}]</i>".format(a, b, c, d, -b, x1, x2))
 	elif typ=="b":
 		try:
