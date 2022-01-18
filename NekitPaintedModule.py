@@ -4,12 +4,15 @@ from time import sleep
 import random  
 import requests
 import math
+import cmath
 chid=0
 '''
 {"settings": {"debug": "True"}, "creationlist": ["idk", "NoName"], "notes": {"test": "lo"}}
 '''
 def datadef():
     return {"name":"NekitPaintedModule","help":"Type %nmhelp for help","description":"Official module for Painted Userbot. One day it can become popular"}
+def sqrt(x):
+	return math.pow(x,0.5)
 @Client.on_message(filters.command("nmtype", prefixes = "%")&filters.me)
 def type(_, msg):
 	orig_text=msg.text.split("%nmtype ", maxsplit = 1)[1]
@@ -390,23 +393,17 @@ def des(_, msg):
 			msg.edit("<i>Please provide 3 numbers: <code>a b c</code>, where <code>ax⁴+bx²+c=0</code></i>")
 			return
 		d=b**2-4*a*c
-		if d<0:
-			msg.edit("<i>Equation has no real roots as <code>Δ={0}<0</code></i>".format(d))
-			return
-		t1=(-b+math.sqrt(d))/(2*a)
-		t2=(-b-math.sqrt(d))/(2*a) 
-		if t1<0 and t2<0:
-			msg.edit("<i>Equation has no real roots as both roots of equation <b>{0}t²+{1}t+{2}</b>, where <code>t=x²</code>, are negative</i>".format(a, b, c))
-			return 
+		t1=(-b+sqrt(d))/(2*a)
+		t2=(-b-sqrt(d))/(2*a)
 		if t1>=0:
-			x1=math.sqrt(t1)
-			x2=-math.sqrt(t1)
+			x1=sqrt(t1)
+			x2=-sqrt(t1)
 		else:
 			x1="" 
 			x2="" 
 		if t2>=0:
-			x3=math.sqrt(t2)
-			x4=-math.sqrt(t2) 
+			x3=sqrt(t2)
+			x4=-sqrt(t2) 
 		else:
 			x3="" 
 			x4="" 
