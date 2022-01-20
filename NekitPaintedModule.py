@@ -432,24 +432,24 @@ def math(_, msg):
 	if typ=="sqrt":
 		a = flt(numbers[0])
 		if a>=0:
-			val = math.sqrt(a)
+			val = sqrt(a)
 		else:
 			val = cmath.sqrt(a)
 		expr = "√({0})".format(a) 
 	elif typ=="cbrt":
 		a=flt(numbers[0])
 		if a>=0:
-			val = math.pow(a, 1./3)
+			val = pow(a, 1./3)
 		else:
-			val = -math.pow(math.abs(a), 1./3)
+			val = -pow(math.abs(a), 1./3)
 		expr="³√{0}".format(a)
 	elif typ=="root":
 		a=flt(numbers[0])
 		pow=flt(numbers[0])
 		if a>=0:
-			val = math.pow(a, 1./pow)
+			val = pow(a, 1./pow)
 		elif a<0 and pow%2!=0:
-			val = -math.pow(math.abs(a), 1./pow)
+			val = -pow(abs(a), 1./pow)
 		elif a<0 and pow==2:
 			val = cmath.sqrt(a)
 		else:
@@ -458,11 +458,11 @@ def math(_, msg):
 	elif typ=="pow":
 		a=flt(numbers[0])
 		pow=flt(numbers[0])
-		val = math.pow(a, pow) 
+		val = pow(a, pow) 
 		expr = "{0}^({1})".format(a, pow)  
 	elif typ=="abs":
 		a=numbers[0]
-		val=math.abs(a)
+		val=abs(a)
 		expr="|{0}|".format(a) 
 	else:
 		msg.edit("<i><b>Available functions</b>\n•<code>sqrt<code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a</i>")
