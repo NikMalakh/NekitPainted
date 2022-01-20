@@ -429,8 +429,12 @@ def math(_, msg):
 	except:
 		pass
 	if typ=="sqrt":
-		val = math.sqrt(flt(numbers[0]))
-		expr = "√({0})".format(numbers[0]) 
+		a = flt(numbers[0])
+		if a>=0:
+			val = math.sqrt(a)
+		else:
+			val = cmath.sqrt(a)
+		expr = "√({0})".format(a) 
 	elif typ=="cbrt":
 		a=flt(numbers[0])
 		if a>=0:
@@ -445,11 +449,10 @@ def math(_, msg):
 			val = pow(a, 1./pow)
 		elif a<0 and pow%2!=0:
 			val = -pow(math.abs(a), 1./pow)
-		elif a<0 and pow=2:
+		elif a<0 and pow==2:
 			val = cmath.sqrt(a)
 		else:
-			msg.edit("<i><b>Sorry, I couldn't solve this...</b></i>")
-			return
+			val = cmath.pow(a, 1./pow)
 		expr = "{0}^(1/{1})".format(a, pow) 
 	elif typ=="abs":
 		a=numbers[0]
