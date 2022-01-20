@@ -421,7 +421,7 @@ def eq(_, msg):
 	else:
 		msg.edit("<i>I can't solve this type of equation. Type <code>%nmeq help</code> for all available types</i>")
 @Client.on_message(filters.command("nmmath", prefixes = "%")&filters.me)
-def math(_, msg):
+def mth(_, msg):
 	args=msg.text.split(" ")
 	try:
 		typ=args[1]
@@ -470,12 +470,16 @@ def math(_, msg):
 		pw=flt(numbers[1])
 		val = math.log(a, pw)
 		expr = "log{1}({0})".format(a, pw) 
+	elif typ=="ln":
+		a=flt(numbers[0])
+		val = math.log(a)
+		expr = "ln({0})".format(a)  
 	elif typ=="abs":
 		a=flt(numbers[0]) 
 		val=flt(abs(a)) 
 		expr="|{0}|".format(a) 
 	else:
-		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b</i>")
+		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b\n•<code>ln</code> a — returns natural logarithm of a</i>")
 		return 
 	msg.edit("<i><b>Expression: </b>{0}\n<b>Value: {1}</b></i>".format(expr, val))
  
