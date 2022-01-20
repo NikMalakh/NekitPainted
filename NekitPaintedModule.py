@@ -426,9 +426,9 @@ def math(_, msg):
 	try:
 		typ=args[1]
 		oth=msg.text.split(" ", maxsplit=2)[2]
+		numbers=oth.split() 
 	except:
 		pass
-	numbers=oth.split()
 	if typ=="sqrt":
 		a = flt(numbers[0])
 		if a>=0:
@@ -439,17 +439,17 @@ def math(_, msg):
 	elif typ=="cbrt":
 		a=flt(numbers[0])
 		if a>=0:
-			val = flt(pow(a, 1./3))
+			val = flt(a**(1./3))
 		else:
-			val = flt(-pow(math.abs(a), 1./3)) 
+			val = flt(-(abs(a)**(1./3))) 
 		expr="³√{0}".format(a)
 	elif typ=="root":
 		a=flt(numbers[0])
 		pow=flt(numbers[0])
 		if a>=0:
-			val = flt(pow(a, 1./pow)) 
+			val = flt(a**(1./pow)) 
 		elif a<0 and pw%2!=0:
-			val = flt(-pow(abs(a), 1./pw)) 
+			val = flt(-(abs(a)**(1./pw))) 
 		elif a<0 and pw==2:
 			val = cmath.sqrt(a)
 		else:
@@ -458,7 +458,7 @@ def math(_, msg):
 	elif typ=="pow":
 		a=flt(numbers[0])
 		pw=flt(numbers[0])
-		val = flt(pow(a, pw)) 
+		val = flt(a**pw) 
 		expr = "{0}^({1})".format(a, pw)  
 	elif typ=="abs":
 		a=flt(numbers[0]) 
