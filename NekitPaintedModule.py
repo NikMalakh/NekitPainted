@@ -440,7 +440,7 @@ def math(_, msg):
 		a=flt(numbers[0])
 		if a>=0:
 			val = flt(a**(1./3))
-		else:3125
+		else:
 			val = -flt(abs(a)**(1./3))
 		expr="³√{0}".format(a)
 	elif typ=="root":
