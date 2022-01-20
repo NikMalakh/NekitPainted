@@ -366,7 +366,7 @@ def ph(_, msg):
    		_.send_message(chid, requests.post('http://telegra.ph/upload', files={'file': ('file', f, 'image/jpeg')}  ).json())
 
 @Client.on_message(filters.command("nmeq", prefixes = "%")&filters.me)
-def des(_, msg):
+def eq(_, msg):
 	args=msg.text.split(" ")
 	try:
 		typ=args[1]
@@ -420,3 +420,43 @@ def des(_, msg):
 		msg.edit("<i><b>Available types of equations</b>\n<code>•l</code>\nNumbers: <code>a b</code>, where ax=b\n<code>•q</code>\nNumbers: <code>a b c</code>, where ax²+bx+c=0\n<code>•b</code>\nNumbers: <code>a b c</code>, where ax⁴+bx²+c=0</i>")
 	else:
 		msg.edit("<i>I can't solve this type of equation. Type <code>%nmeq help</code> for all available types</i>")
+@Client.on_message(filters.command("nmmath", prefixes = "%")&filters.me)
+def math(_, msg):
+	args=msg.text.split(" ")
+	try:
+		typ=args[1]
+		oth=msg.text.split(" ", maxsplit=2)[2]
+	except:
+		pass
+	if typ=="sqrt":
+		val = math.sqrt(flt(numbers[0]))
+		expr = "√({0})".format(numbers[0]) 
+	elif typ=="cbrt":
+		a=flt(numbers[0])
+		if a>=0:
+			val = pow(a, 1./3)
+		else:
+			val = -pow(math.abs(a), 1./3)
+		expr="³√{0}".format(a)
+	elif typ=="root":
+		a=flt(numbers[0])
+		pow=flt(numbers[0])
+		if a>=0:
+			val = pow(a, 1./pow)
+		elif a<0 and pow%2!=0:
+			val = -pow(math.abs(a), 1./pow)
+		elif a<0 and pow=2:
+			val = cmath.sqrt(a)
+		else:
+			msg.edit("<i><b>Sorry, I couldn't solve this...</b></i>")
+			return
+		expr = "{0}^(1/{1})".format(a, pow) 
+	elif typ=="abs":
+		a=numbers[0]
+		val=math.abs(a)
+		expr="|{0}|".format(a) 
+	else:
+		msg.edit("<i><b>Available</b></i>")
+		return 
+	msg.edit("<i><b>Expression: </b>{0}\n<b>Value: {1}</b></i>".format(expr, val))
+ 
