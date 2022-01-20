@@ -459,7 +459,7 @@ def math(_, msg):
 		a = flt(numbers[0])
 		pw = flt(numbers[1])
 		val = a*(10**pw)
-		expr = "{0}E{1}{2}".format(a, ("+" if pw >= 0 else "-"), pw) 
+		expr = "{0}E{1}{2}".format(a, ("+" if pw >= 0 else "-"), abs(pw)) 
 	elif typ=="pow":
 		a=flt(numbers[0])
 		pw=flt(numbers[1])
@@ -468,7 +468,7 @@ def math(_, msg):
 	elif typ=="log":
 		a=flt(numbers[0])
 		pw=flt(numbers[1])
-		val = log(a, pw)
+		val = math.log(a, pw)
 		expr = "log{1}({0})".format(a, pw) 
 	elif typ=="abs":
 		a=flt(numbers[0]) 
