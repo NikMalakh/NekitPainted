@@ -440,16 +440,16 @@ def math(_, msg):
 		a=flt(numbers[0])
 		if a>=0:
 			val = flt(a**(1./3))
-		else:
-			val = flt(-(abs(a)**(1./3))) 
+		else:3125
+			val = -flt(abs(a)**(1./3))
 		expr="³√{0}".format(a)
 	elif typ=="root":
 		a=flt(numbers[0])
-		pow=flt(numbers[0])
+		pw=flt(numbers[1])
 		if a>=0:
 			val = flt(a**(1./pow)) 
 		elif a<0 and pw%2!=0:
-			val = flt(-(abs(a)**(1./pw))) 
+			val = -flt(abs(a)**(1./pw)) 
 		elif a<0 and pw==2:
 			val = cmath.sqrt(a)
 		else:
@@ -457,7 +457,7 @@ def math(_, msg):
 		expr = "{0}^(1/{1})".format(a, pw) 
 	elif typ=="pow":
 		a=flt(numbers[0])
-		pw=flt(numbers[0])
+		pw=flt(numbers[1])
 		val = flt(a**pw) 
 		expr = "{0}^({1})".format(a, pw)  
 	elif typ=="abs":
