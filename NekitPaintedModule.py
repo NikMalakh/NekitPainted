@@ -468,11 +468,11 @@ def mth(_, msg):
 	elif typ=="log":
 		a=flt(numbers[0])
 		pw=flt(numbers[1])
-		val = math.log(a, pw)
-		expr = "log{1}({0})".format(a, pw) 
+		val = flt(math.log(a, pw)) 
+		expr = "log{0}({1})".format(pw, a) 
 	elif typ=="ln":
 		a=flt(numbers[0])
-		val = math.log(a)
+		val = flt(math.log(a)) 
 		expr = "ln({0})".format(a)  
 	elif typ=="abs":
 		a=flt(numbers[0]) 
