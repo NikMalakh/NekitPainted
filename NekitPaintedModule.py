@@ -447,7 +447,7 @@ def math(_, msg):
 		a=flt(numbers[0])
 		pw=flt(numbers[1])
 		if a>=0:
-			val = flt(a**(1./pow)) 
+			val = flt(a**(1./pw)) 
 		elif a<0 and pw%2!=0:
 			val = -flt(abs(a)**(1./pw)) 
 		elif a<0 and pw==2:
@@ -455,17 +455,27 @@ def math(_, msg):
 		else:
 			val = cmath.pow(a, 1./pw)
 		expr = "{0}^(1/{1})".format(a, pw) 
+	elif typ=="exp":
+		a = flt(numbers[0])
+		pw = flt(numbers[1])
+		val = a*(10**pw)
+		expr = "{0}E{1}{2}".format(a, ("+" if pw >= 0 else "-"), pw) 
 	elif typ=="pow":
 		a=flt(numbers[0])
 		pw=flt(numbers[1])
 		val = flt(a**pw) 
-		expr = "{0}^({1})".format(a, pw)  
+		expr = "{0}^({1})".format(a, pw) 
+	elif typ=="log":
+		a=flt(numbers[0])
+		pw=flt(numbers[1])
+		val = log(a, pw)
+		expr = "log{1}({0})".format(a, pw) 
 	elif typ=="abs":
 		a=flt(numbers[0]) 
 		val=flt(abs(a)) 
 		expr="|{0}|".format(a) 
 	else:
-		msg.edit("<i><b>Available functions</b>\n•<code>sqrt<code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a</i>")
+		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b</i>")
 		return 
 	msg.edit("<i><b>Expression: </b>{0}\n<b>Value: {1}</b></i>".format(expr, val))
  
