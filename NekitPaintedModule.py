@@ -183,7 +183,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i></i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i>, <code>%nmmath</code> [operation] [operands]</i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -428,6 +428,7 @@ def math(_, msg):
 		oth=msg.text.split(" ", maxsplit=2)[2]
 	except:
 		pass
+	numbers=oth.split()
 	if typ=="sqrt":
 		a = flt(numbers[0])
 		if a>=0:
@@ -438,28 +439,33 @@ def math(_, msg):
 	elif typ=="cbrt":
 		a=flt(numbers[0])
 		if a>=0:
-			val = pow(a, 1./3)
+			val = math.pow(a, 1./3)
 		else:
-			val = -pow(math.abs(a), 1./3)
+			val = -math.pow(math.abs(a), 1./3)
 		expr="³√{0}".format(a)
 	elif typ=="root":
 		a=flt(numbers[0])
 		pow=flt(numbers[0])
 		if a>=0:
-			val = pow(a, 1./pow)
+			val = math.pow(a, 1./pow)
 		elif a<0 and pow%2!=0:
-			val = -pow(math.abs(a), 1./pow)
+			val = -math.pow(math.abs(a), 1./pow)
 		elif a<0 and pow==2:
 			val = cmath.sqrt(a)
 		else:
 			val = cmath.pow(a, 1./pow)
 		expr = "{0}^(1/{1})".format(a, pow) 
+	elif typ=="pow":
+		a=flt(numbers[0])
+		pow=flt(numbers[0])
+		val = math.pow(a, pow) 
+		expr = "{0}^({1})".format(a, pow)  
 	elif typ=="abs":
 		a=numbers[0]
 		val=math.abs(a)
 		expr="|{0}|".format(a) 
 	else:
-		msg.edit("<i><b>Available</b></i>")
+		msg.edit("<i><b>Available functions</b>\n•<code>sqrt<code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a</i>")
 		return 
 	msg.edit("<i><b>Expression: </b>{0}\n<b>Value: {1}</b></i>".format(expr, val))
  
