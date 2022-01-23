@@ -183,7 +183,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i>, <code>%nmmath</code> [operation] [operands]</i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmchoice</code> <i>[sequence of options separated by spaces]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i>, <code>%nmmath</code> [operation] [operands]</i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -495,13 +495,25 @@ def mth(_, msg):
 		except:
 			a=1
 		val = flt(math.pi**a) 
-		expr = "π^({0})".format(a)      
+		expr = "π^({0})".format(a)
+	elif typ=="tau":
+		try:
+			a=flt(numbers[0])
+		except:
+			a=1
+		val = flt(math.tau**a) 
+		expr = "τ^({0})".format(a)      
 	elif typ=="abs":
 		a=flt(numbers[0]) 
 		val=flt(abs(a)) 
 		expr="|{0}|".format(a) 
 	else:
-		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b\n•<code>ln</code> a — returns natural logarithm of a\•<code>lg</code> a — returns logarithm of a with base 10\n•<code>lb</code> a — returns logarithm of a with base 2\n•<code>pi</code> a — returns pi to power of a (a defaults to 1)\n•<code>e</code> a — returns e to power of a (a defaults to 1)</i>")
+		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b\n•<code>ln</code> a — returns natural logarithm of a\•<code>lg</code> a — returns logarithm of a with base 10\n•<code>lb</code> a — returns logarithm of a with base 2\n•<code>pi</code> a — returns π to power of a (a defaults to 1)\n•<code>e</code> a — returns e to power of a (a defaults to 1)\n<code>tau</code> a - returns τ=2π to power of a (a defaults to 1)</i>")
 		return 
 	msg.edit("<i><b>Expression: </b>{0}\n<b>Value: {1}</b></i>".format(expr, val))
  
+@Client.on_message(filters.command("nmchoice", prefixes = "%")&filters.me)
+def choice(_, msg):
+	args=msg.text.split("%nmchoice ", maxsplit = 1)[1]
+	rand = random.choice(args.split())
+	msg.edit("<i>I choose <b>{0}</b></i>").format(rand)
