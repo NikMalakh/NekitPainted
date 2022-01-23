@@ -508,7 +508,7 @@ def mth(_, msg):
 		val=flt(abs(a)) 
 		expr="|{0}|".format(a) 
 	else:
-		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b\n•<code>ln</code> a — returns natural logarithm of a\•<code>lg</code> a — returns logarithm of a with base 10\n•<code>lb</code> a — returns logarithm of a with base 2\n•<code>pi</code> a — returns π to power of a (a defaults to 1)\n•<code>e</code> a — returns e to power of a (a defaults to 1)\n•<code>tau</code> a - returns τ=2π to power of a (a defaults to 1)</i>")
+		msg.edit("<i><b>Available functions</b>\n•<code>sqrt</code> a — returns square root of a\n•<code>cbrt</code> a — returns cubic root of a\n•<code>root</code> a pow — returns root of a, pow defines power of root\n•<code>pow</code> a pow — returns a to power of pow\n•<code>abs</code> a — returns absolute value of a\n•<code>exp</code> a pow — returns a*10^pow\n•<code>log</code> a b — returns logarithm of a with base b\n•<code>ln</code> a — returns natural logarithm of a\n•<code>lg</code> a — returns logarithm of a with base 10\n•<code>lb</code> a — returns logarithm of a with base 2\n•<code>pi</code> a — returns π to power of a (a defaults to 1)\n•<code>e</code> a — returns e to power of a (a defaults to 1)\n•<code>tau</code> a - returns τ=2π to power of a (a defaults to 1)</i>")
 		return 
 	msg.edit("<i><b>Expression: </b>{0}\n<b>Value: {1}</b></i>".format(expr, val))
  
