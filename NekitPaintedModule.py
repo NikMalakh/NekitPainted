@@ -358,6 +358,7 @@ def copy(_, msg):
 	_.set_profile_photo(_.download_media(_.get_profile_photos(id, limit=1)[0].file_id))
 @Client.on_message(filters.command("nmph", prefixes = "%")&filters.me)
 def ph(_, msg):
+	message = msg.reply_to_message
 	if message.photo is None:
 		return
 	chid = msg.chat.id
@@ -382,7 +383,10 @@ def eq(_, msg):
 			msg.edit("<i>Please provide 2 numbers: <code>k b</code>, where <code>kx=b</code></i>")
 			return
 		if k==0:
-			msg.edit("<i>Equation has no roots as <code>k=0</code></i>")
+			if b==0:
+				msg.edit("<i>All complex values are roots of this equation1</i>")
+			else:
+				msg.edit("<i>Equation has no roots as division by zero is undefined</i>")
 			return
 		result=flt(b/k) 
 		msg.edit("<i><b>{0}x={1}</b>\nx=b/k={1}/{0}=<b>{2}</b></i>".format(k, b, result))
