@@ -362,7 +362,7 @@ def ph(_, msg):
 	if message.photo is None:
 		return
 	chid = msg.chat.id
-	photo = _.download_media(msg)
+	photo = _.download_media(message)
 	with open(photo, 'rb') as f:
    		_.send_message(chid, requests.post('http://telegra.ph/upload', files={'file': ('file', f, 'image/jpeg')}  ).json())
 
@@ -384,7 +384,7 @@ def eq(_, msg):
 			return
 		if k==0:
 			if b==0:
-				msg.edit("<i>All complex values are roots of this equation1</i>")
+				msg.edit("<i>All complex values are roots of this equation</i>")
 			else:
 				msg.edit("<i>Equation has no roots as division by zero is undefined</i>")
 			return
