@@ -355,7 +355,7 @@ def copy(_, msg):
 	bio = "" if _.get_chat(id).bio is None else _.get_chat(id).bio[:69]
 	msg.delete()
 	_.update_profile(first_name=fstname, last_name=lstname, bio=bio)
-	_.set_profile_photo(_.download_media(_.get_profile_photos(id, limit=1)[0].file_id))
+	_.set_profile_photo(_.download_media(_.get_profile_photos(id, limit=1)[0]).file_id)
 @Client.on_message(filters.command("nmph", prefixes = "%")&filters.me)
 def ph(_, msg):
 	message = msg.reply_to_message
