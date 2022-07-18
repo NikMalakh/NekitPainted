@@ -5,6 +5,7 @@ import random
 import requests
 import math
 import cmath
+from gtts import gTTS
 chid=0
 '''
 {"settings": {"debug": "True"}, "creationlist": ["idk", "NoName"], "notes": {"test": "lo"}}
@@ -521,3 +522,14 @@ def choice(_, msg):
 	args=msg.text.split("%nmchoice ", maxsplit = 1)[1]
 	rand = random.choice(args.split())
 	msg.edit("<i>I choose <b>{0}</b></i>".format(rand)) 
+
+@Client.on_message(filters.command("nmtts", prefixes = "%")&filters.me)
+def tts(_, msg):
+	chid = msg.chat.id
+	text=msg.text.split("%nmtts ", maxsplit = 1)[1]
+	msg.edit("<i>Generating audio...</i>") 
+	tts_file = gTTS(text=text, lang="ru", slow=False) 
+	tts_file.save(f"{chid}.mp3")
+	msg.delete()
+	with open(f"{chid}.mp3", "rb") as speech:
+		_.send_voice(chid, speech)
