@@ -527,8 +527,8 @@ def choice(_, msg):
 @Client.on_message(filters.command("nmtts", prefixes = "%")&filters.me)
 def tts(_, msg):
 	chid = msg.chat.id
-	text=msg.text.split("%nmtts ", maxsplit = 2)[2]
-	lang=msg.text.split("%nmtts ", maxsplit = 2)[1]
+	text=msg.text.split(" ", maxsplit = 2)[2]
+	lang=msg.text.split(" ", maxsplit = 2)[1]
 	msg.edit("<i>Generating audio...</i>") 
 	tts_file = gTTS(text=text, lang=lang, slow=False) 
 	tts_file.save(f"{chid}.mp3")
