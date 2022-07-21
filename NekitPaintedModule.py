@@ -5,6 +5,7 @@ import random
 import requests
 import math
 import cmath
+import os
 from gtts import gTTS
 chid=0
 '''
@@ -184,7 +185,7 @@ def count(_, msg):
 @Client.on_message(filters.command("nmhelp", prefixes = "%")&filters.me)
 def help(_, msg):
 	chid=msg.chat.id
-	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmchoice</code> <i>[sequence of options separated by spaces]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i>, <code>%nmmath</code> [operation] [operands]</i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
+	msg.edit("<b>Nekit Painted Module commands:</b>\n\n<b><i>Message flood: </i></b><code>%nmspam</code> <i>[amount] [text]</i>, <code>%nmspamphoto</code> <i>[amount] [URL]</i>, <code>%nmspamvideo</code> <i>[amount] [URL]</i>, <code>%nmspamsticker</code> <i>[amount] [URL]</i>, <code>%nmspamdoc</code> <i>[amount] [URL]</i>, <code>%nmspamgif</code> <i>[amount] [URL]</i>, <code>%nmspamvoice</code> <i>[amount] [URL]</i>\n<b><i>Arts: </i></b><code>%nmart</code> <i>[art]|help</i>, <code>%nmcart</code> <i>([art] text)|help</i>\n<b><i>Animations: </i></b><code>%nmprocess</code> <i>text</i>, <code>%nmtype</code> <i>text</i>, <code>%nmctype</code> <i>[symbol] [text]</i>, <code>%nmticker</code> <i>text</i>\n<b><i>Chat action simulation: </i></b><code>%nmstatus</code> <i>typing|upload_photo|upload_video|upload_audio|upload_document|find_location|upload_video_note|choose_contact|playing|speaking|cancel</i>\n<b><i>Message search: </i></b><code>%nmlast</code> <i>message limit</i>, <code>%nmsearch</code> <i>[message limit] [query]</i>\n<b><i>Chat information: </i></b><code>%nmcountmsg</code>\n<b><i>Self-destructive messages: </i></b><code>%nmdes</code> <i>[amount of seconds] [message text]</i>\n<b><i>Calculations: </i></b> <code>%nmrand</code> <i>[lower limit] [higher limit]</i>, <code>%nmchoice</code> <i>[sequence of options separated by spaces]</i>, <code>%nmcalc</code> <i>expression <b><u>(unsafe!)</u></b>, <code>%nmeq</code> <i>([type] [numbers])|help</i>, <code>%nmmath</code> [operation] [operands]</i>\n<i><b>Text-to-speech: </b><code>%nmtts</code> [lang] [text]</i>\n<b><i>Technical commands: </i></b> <code>%nnmtest</code>, <code>%nmversion</code>") 
 @Client.on_message(filters.command("nmticker", prefixes = "%")&filters.me)
 def tcker(_, msg):
 	orig_text=msg.text.split("%nmticker ", maxsplit = 1)[1]
@@ -526,10 +527,12 @@ def choice(_, msg):
 @Client.on_message(filters.command("nmtts", prefixes = "%")&filters.me)
 def tts(_, msg):
 	chid = msg.chat.id
-	text=msg.text.split("%nmtts ", maxsplit = 1)[1]
+	text=msg.text.split("%nmtts ", maxsplit = 2)[2]
+	lang=msg.text.split("%nmtts ", maxsplit = 2)[1]
 	msg.edit("<i>Generating audio...</i>") 
-	tts_file = gTTS(text=text, lang="ru", slow=False) 
+	tts_file = gTTS(text=text, lang=lang, slow=False) 
 	tts_file.save(f"{chid}.mp3")
 	msg.delete()
 	with open(f"{chid}.mp3", "rb") as speech:
 		_.send_voice(chid, speech)
+	os.remove(f"{chid}.mp3")
