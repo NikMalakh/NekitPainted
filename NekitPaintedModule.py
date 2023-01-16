@@ -3,7 +3,7 @@ from pyrogram.errors import FloodWait
 from time import sleep
 import random  
 import requests
-from tkinter import *
+from Tkinter import *
 from turtle import Turtle, Screen
 import math
 import cmath
