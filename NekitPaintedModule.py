@@ -3,6 +3,8 @@ from pyrogram.errors import FloodWait
 from time import sleep
 import random  
 import requests
+from tkinter import *
+from turtle import Turtle, Screen
 import math
 import cmath
 import os
@@ -536,3 +538,56 @@ def tts(_, msg):
 	with open(f"{chid}.mp3", "rb") as speech:
 		_.send_voice(chid, speech)
 	os.remove(f"{chid}.mp3")
+
+@Client.on_message(filters.command("nmplot", prefixes = "%")&filters.me)
+def plot(_, msg):
+	chid = msg.chat.id
+	func=msg.text.split(" ", maxsplit = 1)[1]
+	msg.edit("<i>Generating plot...</i>") 
+	WIDTH, HEIGHT = 20, 15  # coordinate system size
+
+	def plotter(f, turtle, x_min, x_max, tick):
+		turtle.penup()
+		x = x_min
+		while x<x_max:
+			try:
+				y = eval(f)
+				ivy.goto(x, y)
+				turtle.pendown()
+				x+=tick
+			except Exception as e:
+				x+=tick
+
+	def axis(turtle, distance, tick):
+		position = turtle.position()
+		turtle.pendown()
+
+		for _ in range(0, distance // 2, tick):
+			turtle.forward(tick)
+			turtle.dot()
+
+		turtle.setposition(position)
+
+		for _ in range(0, distance // 2, tick):
+			turtle.backward(tick)
+			turtle.dot()
+
+		screen = Screen()
+		screen.setworldcoordinates(-WIDTH/2, -HEIGHT/2, WIDTH//2, HEIGHT/2)
+
+	ivy = Turtle(visible=False)
+	ivy.speed('fastest')
+	ivy.penup()
+	axis(ivy, WIDTH, 1)
+
+	ivy.penup()
+	ivy.home()
+	ivy.setheading(90)
+	axis(ivy, HEIGHT, 1)
+
+	plotter(func, ivy, -WIDTH//2, WIDTH//2, 0.05)
+	ts.getcanvas().postscript(file="graph.eps")
+	msg.delete()
+	with open('graph.eps', 'rb') as image:
+		_.send_photo(chid, image, caption = '<i>Graph of function <code>y={0}</code></i>'.format(func), parse_mode='html')
+	os.remove("graph.eps")
