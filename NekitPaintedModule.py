@@ -542,7 +542,7 @@ def tts(_, msg):
 def plot(_, msg):
 	chid = msg.chat.id
 	func=msg.text.split(" ", maxsplit = 1)[1]
-	msg.edit("<i>Generating plot...</i>") 
+	msg.edit("<i>Plotting graph...</i>") 
 	WIDTH, HEIGHT = 20, 15  # coordinate system size
 
 	def plotter(f, turtle, x_min, x_max, tick):
@@ -571,10 +571,10 @@ def plot(_, msg):
 			turtle.backward(tick)
 			turtle.dot()
 
-		screen = Screen()
+		screen = turtle.Screen()
 		screen.setworldcoordinates(-WIDTH/2, -HEIGHT/2, WIDTH//2, HEIGHT/2)
 
-	ivy = Turtle(visible=False)
+	ivy = turtle.Turtle(visible=False)
 	ivy.speed('fastest')
 	ivy.penup()
 	axis(ivy, WIDTH, 1)
